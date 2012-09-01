@@ -1,5 +1,4 @@
 <?php
-
 $SECRET_KEY = 'xxx'; //40 character secret key
 $CREDENTIALS = 'user:pass';
 
@@ -28,5 +27,4 @@ curl_setopt($c, CURLOPT_HEADER, 0);
 curl_exec($c);
 
 curl_close($c);
-
 ?>
