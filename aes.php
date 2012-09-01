@@ -1,12 +1,13 @@
 <?php
 
 $SECRET_KEY = 'xxx'; //40 character secret key
-$CREDENTIALS = 'user:pass';
+$CREDENTIALS = 'a:b';
 
-$encrypted_credentials = @base64_encode(mcrypt_cbc(MCRYPT_RIJNDAEL_128,substr($SECRET_KEY,0,40),$CREDENTIALS,MCRYPT_ENCRYPT, 0));
+$key256 = pack("H*" , hash('sha256', $SECRET_KEY));
+$encrypted_string = base64_encode( openssl_encrypt( $CREDENTIALS, "aes-256-cbc", $key256, true) );
 
 $params['access_key'] = 'xxx'; //20 character key
-$params['credentials'] = $encrypted_credentials;
+$params['credentials'] = $encrypted_string;
 $params['timestamp'] = date('c');
 
 $pre_signature = 'http://api.ravelry.com/authenticate.json?' . http_build_query($params);
