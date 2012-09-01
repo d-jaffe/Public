@@ -1,6 +1,5 @@
 <?php
 
-
 $SECRET_KEY = 'xxx'; //40 character secret key
 $CREDENTIALS = 'user:pass';
 
